@@ -19,13 +19,10 @@ var conn = new xmpp.Client({
 });
 conn.on('online',function(){
     sys.puts("ONLINE");
-    conn.send(new xmpp.Element('presence'));
-    conn.send(new xmpp.Element('message',
-    { to: 'rkstedman@gmail.com',
-        type: 'chat'}).
-        c('body').
-        t('hello from node'));
-    sys.puts("Message Sent");
+    conn.send(new xmpp.Element('presence', {}).
+    c('show').t('chat').up().
+    c('status').t('hell ya node set mah status'));
+    sys.puts("Status Set");
 });
 conn.on('error',function(e) {
     sys.puts(e);
